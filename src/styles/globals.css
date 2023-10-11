@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.header-font {
+    font-family: 'KingHwa_OldSong', serif;
+    font-weight: 600
+}
+
+.content-font {
+    font-family: 'LXGW WenKai', serif;
+    font-weight: 400
+}
+
+.float-card {
+    transform: scale(1.01);
+    transition: transform 0.2s ease;
+}
+
+.md-editor {
+    font-family: 'LXGW WenKai', serif !important;
+    font-size: 20px !important;
+}
