@@ -15,6 +15,7 @@ import {
 import { api } from "~/utils/api";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import DarkModeSwitcher from "~/components/buttons/darkmode-switcher";
 
 export default function HeaderNavbar() {
   const router = useRouter();
@@ -71,7 +72,7 @@ export default function HeaderNavbar() {
           startContent={<></>}
           type="search"
         />
-
+        <DarkModeSwitcher />
         <AvatarDropdownMenu />
       </NavbarContent>
     </Navbar>

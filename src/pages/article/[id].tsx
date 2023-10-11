@@ -5,7 +5,7 @@ import { api } from "~/utils/api";
 import "md-editor-rt/lib/preview.css";
 import { useState } from "react";
 
-export default function ArticlePate() {
+export default function ArticlePage() {
   const router = useRouter();
   const articleId = router.query.id;
   const { data: certainArticle } = api.article.getById.useQuery({
