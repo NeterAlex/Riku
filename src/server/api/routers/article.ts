@@ -1,6 +1,5 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { z } from "zod";
-import { Prisma } from ".prisma/client";
 
 export const articleRouter = createTRPCRouter({
   createNew: publicProcedure
@@ -117,6 +116,24 @@ export const articleRouter = createTRPCRouter({
         take: input.pageSize,
       });
     }),
+
+  getAllTags: publicProcedure.query(({ ctx }) => {
+    return ctx.db.tag.findMany({
+      select: {
+        id: true,
+        name: true,
+        desc: true,
+        articles: {
+          select: {
+            id: true,
+          },
+        },
+        _count: {
+          select: { articles: true },
+        },
+      },
+    });
+  }),
 
   updateById: publicProcedure
     .input(

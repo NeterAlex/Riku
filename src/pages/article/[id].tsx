@@ -44,7 +44,7 @@ export default function ArticlePate() {
             </CardHeader>
             <Divider />
             <CardBody>
-              <div className="">
+              <div>
                 <MdPreview
                   className="content-font"
                   editorId={id}

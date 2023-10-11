@@ -8,10 +8,12 @@ import {
   Divider,
 } from "@nextui-org/react";
 import { useRouter } from "next/router";
+import { Chip } from "@nextui-org/chip";
 
 export default function ArchivePage() {
   const router = useRouter();
   const { data } = api.article.getListGroupByPublishedTime.useQuery();
+  const { data: tagData } = api.article.getAllTags.useQuery();
   const headerImage =
     "https://images.pexels.com/photos/33130/typewriter-keys-mechanically-letters.jpg?auto=compress&cs=tinysrgb&w=800";
   // 按月分组
@@ -35,6 +37,7 @@ export default function ArchivePage() {
       articles,
     };
   });
+
   return (
     <>
       <title>归档 | Refined</title>
@@ -42,7 +45,7 @@ export default function ArchivePage() {
         className="h-[15vh] min-h-[10vh] bg-cover bg-center"
         style={{ backgroundImage: `url(${headerImage})` }}
       ></div>
-      <div className="">
+      <div>
         <div
           className={`z-10 flex min-h-[calc(85vh-115px)] w-full flex-col bg-gradient-to-b
                  from-[#efefef] to-[#efefef] bg-cover bg-center`}
@@ -50,12 +53,30 @@ export default function ArchivePage() {
           <Card className="my-5 h-full w-[50%] max-w-[60vw] self-center ">
             <CardHeader className="content-font flex-col items-start justify-start gap-2 px-10 pb-5 pt-10 ">
               <h1 className="header-font text-2xl">归档 | Archive</h1>
-              <p className="content-font text-medium text-secondary">{`${articleList[
+              <p className="content-font text-medium text-primary">{`${articleList[
                 articleList.length - 1
               ]?.month} - ${articleList[0]?.month}`}</p>
             </CardHeader>
             <Divider />
             <CardBody className="px-8 ">
+              <div className="flex flex-wrap gap-2 px-2 pb-2">
+                {tagData?.map((tag, index) => {
+                  return (
+                    <Chip
+                      variant="flat"
+                      color="secondary"
+                      key={index}
+                      endContent={
+                        <Chip color="secondary" variant="light">
+                          {tag._count.articles}
+                        </Chip>
+                      }
+                    >
+                      {tag.name}
+                    </Chip>
+                  );
+                })}
+              </div>
               <Accordion
                 defaultSelectedKeys="all"
                 selectionMode={"multiple"}
