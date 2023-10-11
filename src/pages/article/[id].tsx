@@ -1,12 +1,14 @@
 import { useRouter } from "next/router";
 import { Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
-import { MdPreview } from "md-editor-rt";
+import { MdPreview, type Themes } from "md-editor-rt";
 import { api } from "~/utils/api";
 import "md-editor-rt/lib/preview.css";
 import { useState } from "react";
+import { useTheme } from "next-themes";
 
 export default function ArticlePage() {
   const router = useRouter();
+  const { theme } = useTheme();
   const articleId = router.query.id;
   const { data: certainArticle } = api.article.getById.useQuery({
     id: Number(articleId),
@@ -14,6 +16,7 @@ export default function ArticlePage() {
   const [id] = useState<string>("article-preview");
   const tagString = certainArticle?.tags.map((t) => `#${t.name}`).join(" ");
   const dateString = certainArticle?.publishedAt.toLocaleDateString("zh-CN");
+
   return (
     <>
       <title>{certainArticle?.title} | Refined</title>
@@ -23,22 +26,31 @@ export default function ArticlePage() {
           style={{ backgroundImage: `url(${certainArticle?.image})` }}
         ></div>
         <div
-          className={`z-10 flex min-h-[calc(85vh-115px)] w-full flex-col bg-gradient-to-b
-                 from-[#efefef] to-[#efefef] bg-cover bg-center`}
+          className={`z-10 flex min-h-[calc(85vh-115px)] w-full flex-col bg-[#efefef] bg-cover bg-center dark:bg-[#202022]`}
         >
-          <Card className="my-5 h-full w-[50%] max-w-[60vw] self-center ">
+          <Card className="my-5 h-full w-[50%] max-w-[60vw] self-center bg-[#efefef] dark:bg-[#262628]">
             <CardHeader className="content-font flex-col items-start justify-start gap-2 px-10 pb-5 pt-10">
               <div className="flex gap-2">
-                <p className="pl-1 text-medium text-gray-600">By</p>
-                <p className="text-medium text-secondary">
+                <p className="pl-1 text-medium text-gray-600 dark:text-gray-400">
+                  By
+                </p>
+                <p className="text-medium text-secondary dark:text-primary">
                   {certainArticle?.author.name}
                 </p>
-                <p className="text-medium text-gray-600">in</p>
-                <p className="text-medium text-secondary">{tagString}</p>
-                <p className="text-medium text-gray-600">{dateString}</p>
+                <p className="text-medium text-gray-600 dark:text-gray-400">
+                  in
+                </p>
+                <p className="text-medium text-secondary dark:text-primary">
+                  {tagString}
+                </p>
+                <p className="text-medium text-gray-600 dark:text-gray-400">
+                  {dateString}
+                </p>
               </div>
-              <h1 className="header-font text-2xl">{certainArticle?.title}</h1>
-              <p className="content-font text-medium text-gray-500">
+              <h1 className="header-font text-2xl dark:text-gray-300">
+                {certainArticle?.title}
+              </h1>
+              <p className="content-font text-medium text-gray-500 dark:text-gray-400">
                 {certainArticle?.desc}
               </p>
             </CardHeader>
@@ -48,6 +60,7 @@ export default function ArticlePage() {
                 <MdPreview
                   className="content-font"
                   editorId={id}
+                  theme={theme as Themes}
                   modelValue={certainArticle?.content ?? "Loading"}
                   previewTheme={"vuepress"}
                 />

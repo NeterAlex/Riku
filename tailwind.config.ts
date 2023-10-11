@@ -23,6 +23,23 @@ export default {
             secondary: {
               DEFAULT: "#8c5442",
             },
+            foreground: {
+              DEFAULT: "#5a5a5a",
+            },
+          },
+        },
+        dark: {
+          colors: {
+            primary: {
+              DEFAULT: "#74be93",
+            },
+            //#2e49a6
+            secondary: {
+              DEFAULT: "#74be93",
+            },
+            foreground: {
+              DEFAULT: "#9da3ae",
+            },
           },
         },
       },

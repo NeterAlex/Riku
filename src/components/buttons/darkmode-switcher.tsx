@@ -8,7 +8,7 @@ export default function DarkModeSwitcher() {
     <>
       <Button
         isIconOnly
-        className="items-center"
+        className="items-center opacity-60"
         onClick={() => void setTheme(theme === "dark" ? "light" : "dark")}
       >
         {theme === "light" ? <HalfMoon /> : <SunLight />}

@@ -140,19 +140,35 @@ export const articleRouter = createTRPCRouter({
       z.object({
         id: z.number(),
         title: z.string(),
+        tags: z.array(z.string()),
         content: z.string(),
+        desc: z.string(),
         hidden: z.boolean(),
         image: z.string(),
+        publishedAt: z.date(),
       }),
     )
-    .query(({ ctx, input }) => {
+    .mutation(async ({ ctx, input }) => {
+      const existedTags = await ctx.db.tag.findMany({
+        where: { name: { in: input.tags } },
+      });
+      const tagsToConnect = existedTags.map((t) => ({ id: t.id }));
+      const tagsToCreate = input.tags
+        .filter((t) => !existedTags.find((et) => et.name === t))
+        .map((n) => ({ name: n, desc: "" }));
       return ctx.db.article.update({
         where: { id: input.id },
         data: {
           title: input.title,
+          desc: input.desc,
+          publishedAt: input.publishedAt,
           content: input.content,
           hidden: input.hidden,
-          //image: input.image
+          image: input.image,
+          tags: {
+            connect: tagsToConnect,
+            create: tagsToCreate,
+          },
         },
       });
     }),

@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <>
-      <div className="flex h-[50px] w-full items-center justify-center gap-5 bg-[#f4f4f4] px-20 dark:bg-[#242224]">
+      <div className="header-font flex h-[50px] w-full items-center justify-center gap-5 bg-[#f4f4f4] px-20 dark:bg-[#242224]">
         <div className="flex w-[70%] justify-around">
           <div className="flex-2">
             <p className="text-sm text-gray-400">NeterAlex © 2023 </p>

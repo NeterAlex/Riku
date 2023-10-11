@@ -4,7 +4,7 @@
 
 .header-font {
     font-family: 'KingHwa_OldSong', serif;
-    font-weight: 600
+    font-weight: 500
 }
 
 .content-font {
@@ -12,12 +12,12 @@
     font-weight: 400
 }
 
-.float-card {
-    transform: scale(1.01);
-    transition: transform 0.2s ease;
-}
-
 .md-editor {
     font-family: 'LXGW WenKai', serif !important;
     font-size: 20px !important;
+    --md-bk-color: #efefef !important;
+}
+
+.md-editor-dark {
+    --md-bk-color: #262628 !important;
 }

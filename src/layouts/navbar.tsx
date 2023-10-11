@@ -16,6 +16,7 @@ import { api } from "~/utils/api";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import DarkModeSwitcher from "~/components/buttons/darkmode-switcher";
+import { Search } from "iconoir-react";
 
 export default function HeaderNavbar() {
   const router = useRouter();
@@ -31,7 +32,7 @@ export default function HeaderNavbar() {
         <NavbarContent className="hidden gap-5 sm:flex">
           <NavbarItem>
             <Link
-              className="header-font hover:text-primary"
+              className="header-font hover:text-primary dark:hover:text-primary"
               color="foreground"
               href="/"
             >
@@ -63,13 +64,13 @@ export default function HeaderNavbar() {
           classNames={{
             base: "max-w-full sm:max-w-[10rem] h-10 ml-5",
             mainWrapper: "h-full",
-            input: "text-small",
+            input: "text-small header-font",
             inputWrapper:
               "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
           }}
-          placeholder="搜索……"
+          placeholder="搜索"
           size="sm"
-          startContent={<></>}
+          startContent={<Search />}
           type="search"
         />
         <DarkModeSwitcher />
@@ -90,7 +91,7 @@ const AvatarDropdownMenu = () => {
   const isLogged = baseUser?.name !== undefined;
   const router = useRouter();
   return isLogged ? (
-    <Dropdown placement="bottom-end">
+    <Dropdown placement="bottom-end" className="bg-[#efefef] dark:bg-[#202022]">
       <DropdownTrigger>
         <div className="py-2">
           <Avatar
@@ -104,7 +105,7 @@ const AvatarDropdownMenu = () => {
         </div>
       </DropdownTrigger>
       <DropdownMenu
-        className="bg-white"
+        className="bg-[#efefef] dark:bg-[#202022]"
         aria-label="Profile Actions"
         variant="flat"
       >

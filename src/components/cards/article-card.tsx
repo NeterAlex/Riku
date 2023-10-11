@@ -27,7 +27,7 @@ export default function ArticleCard(props: ArticleCardProps) {
         isPressable
         isHoverable
         onPress={() => void router.push(`/article/${id}`)}
-        className="w-[22%] flex-grow-0 transform  bg-[#efefef] py-2 transition duration-200 ease-in-out hover:scale-[101%] dark:bg-[#6f6f6f]"
+        className="w-[22%] flex-grow-0 transform  bg-[#efefef] py-2 transition duration-200 ease-in-out hover:scale-[101%] dark:bg-[#262628]"
       >
         <CardHeader className="flex-col items-start px-4 pb-0 pt-2">
           <Image
@@ -37,7 +37,7 @@ export default function ArticleCard(props: ArticleCardProps) {
             className="rounded-xl object-cover "
             src={img}
           />
-          <h4 className="header-font mt-3 px-1 text-left text-large font-bold">
+          <h4 className="header-font mt-3 px-1 text-left text-large font-bold dark:text-gray-400">
             {title}
           </h4>
         </CardHeader>
@@ -49,7 +49,9 @@ export default function ArticleCard(props: ArticleCardProps) {
         <CardFooter>
           <div className="header-font flex w-full content-between justify-between px-2 ">
             <div className="flex">
-              <p className="text-tiny font-bold text-secondary">{author}</p>
+              <p className="text-tiny font-bold text-secondary dark:text-primary">
+                {author}
+              </p>
               <Spacer x={1} />
               <p className="text-tiny font-bold text-gray-600">{category}</p>
             </div>
