@@ -13,6 +13,9 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 import { useSession } from "next-auth/react";
 import ArticleEditButton from "~/components/buttons/article-edit-button";
+import ArticleHideButton from "~/components/buttons/article-hide-button";
+import MotionFrame from "~/components/frame/motion-frame";
+import PageBanner from "~/components/banner/page-banner";
 
 export default function ArticlePage() {
   const router = useRouter();
@@ -40,62 +43,64 @@ export default function ArticlePage() {
     <>
       <title>{certainArticle?.title} | Refined</title>
       <div className="">
-        <div
-          className="h-[15vh] min-h-[10vh] bg-cover bg-center"
-          style={{ backgroundImage: `url(${certainArticle?.image})` }}
-        ></div>
-        <div
-          className={`z-10 flex min-h-[calc(85vh-115px)] w-full flex-col bg-[#efefef] bg-cover bg-center dark:bg-[#202022]`}
-        >
-          <Card className="my-5 h-full w-[50%] max-w-[60vw] self-center bg-[#efefef] dark:bg-[#262628]">
-            <CardHeader className="content-font flex-col items-start justify-start gap-2 px-10 pb-5 pt-10">
-              <div className="flex w-full justify-between">
-                <div className="flex gap-2">
-                  <p className="pl-1 text-medium text-gray-600 dark:text-gray-400">
-                    By
-                  </p>
-                  <p className="text-medium text-secondary dark:text-primary">
-                    {certainArticle?.author.name}
-                  </p>
-                  <p className="text-medium text-gray-600 dark:text-gray-400">
-                    in
-                  </p>
-                  <p className="text-medium text-secondary dark:text-primary">
-                    {tagString}
-                  </p>
-                  <p className="text-medium text-gray-600 dark:text-gray-400">
-                    {dateString}
-                  </p>
+        <PageBanner image={certainArticle?.image ?? ""} />
+        <MotionFrame>
+          <div
+            className={`z-10 flex min-h-[calc(85vh-115px)] w-full flex-col bg-[#efefef] bg-cover bg-center dark:bg-[#202022]`}
+          >
+            <Card className="my-5 h-full w-[50%] max-w-[60vw] self-center bg-[#efefef] dark:bg-[#262628]">
+              <CardHeader className="content-font flex-col items-start justify-start gap-2 px-10 pb-5 pt-10">
+                <div className="flex w-full justify-between">
+                  <div className="flex gap-2">
+                    <p className="pl-1 text-medium text-gray-600 dark:text-gray-400">
+                      By
+                    </p>
+                    <p className="text-medium text-secondary dark:text-primary">
+                      {certainArticle?.author.name}
+                    </p>
+                    <p className="text-medium text-gray-600 dark:text-gray-400">
+                      in
+                    </p>
+                    <p className="text-medium text-secondary dark:text-primary">
+                      {tagString}
+                    </p>
+                    <p className="text-medium text-gray-600 dark:text-gray-400">
+                      {dateString}
+                    </p>
+                  </div>
+                  <div>
+                    {sessionData?.user.role === "ADMIN" ? (
+                      <>
+                        <ArticleEditButton articleId={articleId as string} />
+                        <ArticleHideButton articleId={articleId as string} />
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  {sessionData?.user.role === "ADMIN" ? (
-                    <ArticleEditButton articleId={articleId as string} />
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              </div>
 
-              <h1 className="header-font text-2xl dark:text-gray-300">
-                {certainArticle?.title}
-              </h1>
-              <p className="content-font text-medium text-gray-500 dark:text-gray-400">
-                {certainArticle?.desc}
-              </p>
-            </CardHeader>
-            <Divider />
-            <CardBody>
-              <div>
-                <MdPreview
-                  className="content-font"
-                  editorId={id}
-                  theme={theme as Themes}
-                  modelValue={certainArticle?.content ?? "Loading"}
-                />
-              </div>
-            </CardBody>
-          </Card>
-        </div>
+                <h1 className="header-font text-2xl dark:text-gray-300">
+                  {certainArticle?.title}
+                </h1>
+                <p className="content-font text-medium text-gray-500 dark:text-gray-400">
+                  {certainArticle?.desc}
+                </p>
+              </CardHeader>
+              <Divider />
+              <CardBody>
+                <div>
+                  <MdPreview
+                    className="content-font"
+                    editorId={id}
+                    theme={theme as Themes}
+                    modelValue={certainArticle?.content ?? "Loading"}
+                  />
+                </div>
+              </CardBody>
+            </Card>
+          </div>
+        </MotionFrame>
       </div>
     </>
   );

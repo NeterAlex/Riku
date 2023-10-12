@@ -5,18 +5,16 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-  Input,
   Link,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
 } from "@nextui-org/react";
-import { api } from "~/utils/api";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import DarkModeSwitcher from "~/components/buttons/darkmode-switcher";
-import { Search } from "iconoir-react";
+import SearchButton from "~/components/buttons/search-button";
 
 export default function HeaderNavbar() {
   const router = useRouter();
@@ -60,19 +58,7 @@ export default function HeaderNavbar() {
         </NavbarContent>
       </NavbarContent>
       <NavbarContent as="div" className="items-center" justify="end">
-        <Input
-          classNames={{
-            base: "max-w-full sm:max-w-[10rem] h-10 ml-5",
-            mainWrapper: "h-full",
-            input: "text-small header-font",
-            inputWrapper:
-              "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-          }}
-          placeholder="搜索"
-          size="sm"
-          startContent={<Search />}
-          type="search"
-        />
+        <SearchButton />
         <DarkModeSwitcher />
         <AvatarDropdownMenu />
       </NavbarContent>
@@ -84,10 +70,7 @@ export default function HeaderNavbar() {
 const AvatarDropdownMenu = () => {
   const { data: sessionData } = useSession();
   const baseUser = sessionData?.user ?? undefined;
-  const { data: detailUser } = api.user.getById.useQuery(
-    baseUser?.id ?? "guest",
-  );
-  const isAdmin = detailUser?.role === "ADMIN" ?? false;
+  const isAdmin = baseUser?.role === "ADMIN" ?? false;
   const isLogged = baseUser?.name !== undefined;
   const router = useRouter();
   return isLogged ? (
@@ -115,7 +98,7 @@ const AvatarDropdownMenu = () => {
         </DropdownItem>
         <DropdownItem
           key="write"
-          color="primary"
+          color="secondary"
           onClick={() => void router.push("/article/create")}
         >
           写作

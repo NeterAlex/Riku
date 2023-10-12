@@ -14,6 +14,7 @@ import "md-editor-rt/lib/style.css";
 import { api } from "~/utils/api";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
+import MotionFrame from "~/components/frame/motion-frame";
 
 interface createArticleForm {
   title: string;
@@ -51,7 +52,7 @@ export default function CreateArticle() {
   };
 
   return (
-    <>
+    <MotionFrame>
       <div className=" flex min-h-[calc(100vh-115px)] w-full flex-col bg-[#efefef] dark:bg-[#202022]">
         <Card className="my-5 h-full w-[70%] self-center dark:bg-[#262628] ">
           <CardHeader className="flex justify-between px-5 align-middle">
@@ -161,6 +162,6 @@ export default function CreateArticle() {
           </CardBody>
         </Card>
       </div>
-    </>
+    </MotionFrame>
   );
 }

@@ -135,6 +135,81 @@ export const articleRouter = createTRPCRouter({
     });
   }),
 
+  searchByCategory: publicProcedure
+    .input(
+      z.object({
+        type: z.enum(["on-title", "on-author", "on-tag"]),
+        values: z.string(),
+      }),
+    )
+    .query(({ ctx, input }) => {
+      switch (input.type) {
+        case "on-title":
+          return ctx.db.article.findMany({
+            where: {
+              title: {
+                contains: input.values,
+              },
+            },
+            orderBy: {
+              publishedAt: "desc",
+            },
+            include: {
+              tags: true,
+              author: {
+                select: {
+                  name: true,
+                },
+              },
+            },
+          });
+        case "on-author":
+          return ctx.db.article.findMany({
+            where: {
+              author: {
+                name: {
+                  contains: input.values,
+                },
+              },
+            },
+            orderBy: {
+              publishedAt: "desc",
+            },
+            include: {
+              tags: true,
+              author: {
+                select: {
+                  name: true,
+                },
+              },
+            },
+          });
+        case "on-tag":
+          return ctx.db.article.findMany({
+            where: {
+              tags: {
+                some: {
+                  name: {
+                    contains: input.values,
+                  },
+                },
+              },
+            },
+            orderBy: {
+              publishedAt: "desc",
+            },
+            include: {
+              tags: true,
+              author: {
+                select: {
+                  name: true,
+                },
+              },
+            },
+          });
+      }
+    }),
+
   updateById: publicProcedure
     .input(
       z.object({
