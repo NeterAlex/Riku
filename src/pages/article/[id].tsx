@@ -46,9 +46,9 @@ export default function ArticlePage() {
         <PageBanner image={certainArticle?.image ?? ""} />
         <MotionFrame>
           <div
-            className={`z-10 flex min-h-[calc(85vh-115px)] w-full flex-col bg-[#efefef] bg-cover bg-center dark:bg-[#202022]`}
+            className={` z-10 flex min-h-[calc(85vh-115px)] w-full flex-col bg-[#efefef] bg-cover bg-center dark:bg-[#202022]`}
           >
-            <Card className="my-5 h-full w-[50%] max-w-[60vw] self-center bg-[#efefef] dark:bg-[#262628]">
+            <Card className="my-5 h-full w-full self-center bg-[#efefef] dark:bg-[#262628]  sm:w-[80%] md:w-[50%] lg:w-[50%]">
               <CardHeader className="content-font flex-col items-start justify-start gap-2 px-10 pb-5 pt-10">
                 <div className="flex w-full justify-between">
                   <div className="flex gap-2">

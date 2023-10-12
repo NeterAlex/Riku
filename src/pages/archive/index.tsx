@@ -53,7 +53,7 @@ export default function ArchivePage() {
               className={`背景颜色 z-10 flex min-h-[calc(85vh-115px)] w-full flex-col
 bg-[#efefef] bg-cover bg-center dark:bg-[#202022]`}
             >
-              <Card className="my-5 h-full w-[50%] max-w-[60vw] self-center bg-[#efefef] dark:bg-[#262628] dark:text-gray-400 ">
+              <Card className="my-5 h-full w-full  self-center bg-[#efefef] dark:bg-[#262628] dark:text-gray-400 sm:w-[80%] md:w-[65%] lg:w-[50%] ">
                 <CardHeader className="content-font flex-col items-start justify-start gap-2 px-10 pb-5 pt-10 ">
                   <h1 className="header-font text-2xl dark:text-gray-400 ">
                     归档 | Archive

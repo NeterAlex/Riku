@@ -105,9 +105,10 @@ export default function EditArticle() {
 
   return (
     <>
+      <title>编辑文章 | Refined</title>
       <MotionFrame>
         <div className=" flex min-h-[calc(100vh-115px)] w-full flex-col bg-[#efefef] dark:bg-[#202022]">
-          <Card className="my-5 h-full w-[70%] self-center dark:bg-[#262628] ">
+          <Card className="my-5 h-full w-full  self-center dark:bg-[#262628] sm:w-[80%] md:w-[70%] lg:w-[70%] ">
             <CardHeader className="flex justify-between px-5 align-middle">
               <p className="header-font text-lg dark:text-gray-400">修改文章</p>
               <Button

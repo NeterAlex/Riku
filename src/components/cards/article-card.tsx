@@ -27,7 +27,7 @@ export default function ArticleCard(props: ArticleCardProps) {
         isPressable
         isHoverable
         onPress={() => void router.push(`/article/${id}`)}
-        className="w-[22%] flex-grow-0 transform  bg-[#efefef] py-2 transition duration-200 ease-in-out hover:scale-[101%] dark:bg-[#262628]"
+        className="w-[95%] flex-grow-0 transform bg-[#efefef] py-2 transition duration-200 ease-in-out hover:scale-[101%] dark:bg-[#262628] sm:w-[100%] md:w-[47%] lg:w-[22%]"
       >
         <CardHeader className="flex-col items-start px-4 pb-0 pt-2">
           <Image

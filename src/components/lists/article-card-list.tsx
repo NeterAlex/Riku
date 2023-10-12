@@ -18,7 +18,7 @@ export default function ArticleCardList() {
 
   return (
     <>
-      <div className="flex flex-wrap content-center justify-center gap-5 py-5">
+      <div className="flex flex-wrap justify-center gap-5 py-5">
         {articleList?.slice(1).map((a) => {
           // 处理信息
           const tagString = a.tags.map((t) => `#${t.name}`).join(" ");

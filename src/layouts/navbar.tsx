@@ -26,7 +26,7 @@ export default function HeaderNavbar() {
             Refined{" "}
           </p>
         </NavbarBrand>
-        <NavbarContent className="hidden gap-5 sm:flex">
+        <NavbarContent className="gap-5 sm:flex">
           <NavbarItem>
             <Link
               className="header-font hover:text-secondary dark:hover:text-primary"
@@ -38,7 +38,7 @@ export default function HeaderNavbar() {
           </NavbarItem>
           <NavbarItem>
             <Link
-              className="header-font hover:text-secondary dark:hover:text-primary"
+              className="header-font hidden hover:text-secondary dark:hover:text-primary sm:block"
               color="foreground"
               href="/archive"
             >
