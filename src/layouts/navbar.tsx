@@ -17,7 +17,6 @@ import DarkModeSwitcher from "~/components/buttons/darkmode-switcher";
 import SearchButton from "~/components/buttons/search-button";
 
 export default function HeaderNavbar() {
-  const router = useRouter();
   return (
     <Navbar isBordered position="sticky" maxWidth="lg">
       <NavbarContent justify="center">
@@ -30,7 +29,7 @@ export default function HeaderNavbar() {
         <NavbarContent className="hidden gap-5 sm:flex">
           <NavbarItem>
             <Link
-              className="header-font hover:text-primary dark:hover:text-primary"
+              className="header-font hover:text-secondary dark:hover:text-primary"
               color="foreground"
               href="/"
             >
@@ -39,7 +38,7 @@ export default function HeaderNavbar() {
           </NavbarItem>
           <NavbarItem>
             <Link
-              className="header-font hover:text-primary"
+              className="header-font hover:text-secondary dark:hover:text-primary"
               color="foreground"
               href="/archive"
             >
@@ -48,7 +47,7 @@ export default function HeaderNavbar() {
           </NavbarItem>
           <NavbarItem>
             <Link
-              className="header-font hover:text-primary"
+              className="header-font hover:text-secondary dark:hover:text-primary"
               color="foreground"
               href="/about"
             >

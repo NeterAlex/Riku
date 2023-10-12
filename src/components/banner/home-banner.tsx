@@ -11,7 +11,6 @@ import { useRouter } from "next/router";
 
 export default function HomeBanner() {
   const { data } = api.article.getLatest.useQuery();
-  const tagString = data?.tags.map((t) => `#${t.name}`).join(" ");
   const dateString = data?.publishedAt.toLocaleDateString("zh-CN");
   const router = useRouter();
   return (

@@ -138,7 +138,7 @@ export const articleRouter = createTRPCRouter({
   searchByCategory: publicProcedure
     .input(
       z.object({
-        type: z.enum(["on-title", "on-author", "on-tag"]),
+        type: z.string(),
         values: z.string(),
       }),
     )
@@ -154,13 +154,20 @@ export const articleRouter = createTRPCRouter({
             orderBy: {
               publishedAt: "desc",
             },
-            include: {
-              tags: true,
+            select: {
+              id: true,
+              title: true,
               author: {
                 select: {
                   name: true,
                 },
               },
+              tags: {
+                select: {
+                  name: true,
+                },
+              },
+              publishedAt: true,
             },
           });
         case "on-author":
@@ -175,13 +182,20 @@ export const articleRouter = createTRPCRouter({
             orderBy: {
               publishedAt: "desc",
             },
-            include: {
-              tags: true,
+            select: {
+              id: true,
+              title: true,
               author: {
                 select: {
                   name: true,
                 },
               },
+              tags: {
+                select: {
+                  name: true,
+                },
+              },
+              publishedAt: true,
             },
           });
         case "on-tag":
@@ -198,13 +212,20 @@ export const articleRouter = createTRPCRouter({
             orderBy: {
               publishedAt: "desc",
             },
-            include: {
-              tags: true,
+            select: {
+              id: true,
+              title: true,
               author: {
                 select: {
                   name: true,
                 },
               },
+              tags: {
+                select: {
+                  name: true,
+                },
+              },
+              publishedAt: true,
             },
           });
       }
