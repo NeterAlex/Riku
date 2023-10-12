@@ -25,11 +25,12 @@ export default function ArticlePage() {
   const [id] = useState<string>("article-preview");
   const tagString = certainArticle?.tags.map((t) => `#${t.name}`).join(" ");
   const dateString = certainArticle?.publishedAt.toLocaleDateString("zh-CN");
+  console.log(sessionData?.user);
 
   if (status === "loading" || status === "error") {
     return (
       <>
-        <div className=" flex min-h-[calc(100vh-115px)] w-full flex-col items-center justify-center bg-[#efefef] dark:bg-[#202022]">
+        <div className=" flex min-h-[calc(85vh-115px)] w-full flex-col items-center justify-center bg-[#efefef] dark:bg-[#202022]">
           <CircularProgress size="lg" aria-label="Loading..." />
         </div>
       </>
@@ -68,7 +69,7 @@ export default function ArticlePage() {
                   </p>
                 </div>
                 <div>
-                  {sessionData?.user.role !== "ADMIN" ? (
+                  {sessionData?.user.role === "ADMIN" ? (
                     <ArticleEditButton articleId={articleId as string} />
                   ) : (
                     <></>
@@ -91,7 +92,6 @@ export default function ArticlePage() {
                   editorId={id}
                   theme={theme as Themes}
                   modelValue={certainArticle?.content ?? "Loading"}
-                  previewTheme={"vuepress"}
                 />
               </div>
             </CardBody>

@@ -1,11 +1,19 @@
 /* eslint-disable @typescript-eslint/no-misused-promises,@typescript-eslint/no-unsafe-member-access */
-import {Button, Card, CardBody, CardHeader, Divider, Input,} from "@nextui-org/react";
-import {useState} from "react";
-import {useForm} from "react-hook-form";
-import {MdEditor, type Themes} from "md-editor-rt";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Divider,
+  Input,
+} from "@nextui-org/react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { MdEditor, type Themes } from "md-editor-rt";
 import "md-editor-rt/lib/style.css";
-import {api} from "~/utils/api";
-import {useTheme} from "next-themes";
+import { api } from "~/utils/api";
+import { useTheme } from "next-themes";
+import { useRouter } from "next/router";
 
 interface createArticleForm {
   title: string;
@@ -20,6 +28,7 @@ interface createArticleForm {
 export default function CreateArticle() {
   const [content, setContent] = useState<string>("");
   const { theme } = useTheme();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -37,6 +46,7 @@ export default function CreateArticle() {
       image: data.image,
     });
     //console.log({...data, content: content})
+    void router.push("/");
     return null;
   };
 
@@ -67,7 +77,7 @@ export default function CreateArticle() {
                   <Input
                     classNames={{
                       inputWrapper:
-                        "text-default-300 bg-default-400/20 dark:bg-default-500/20",
+                        "text-default-600 bg-default-400/20 dark:bg-default-500/20 dark:text-default-400",
                     }}
                     isClearable
                     isRequired
@@ -84,7 +94,7 @@ export default function CreateArticle() {
                     isClearable
                     classNames={{
                       inputWrapper:
-                        "text-default-300 bg-default-400/20 dark:bg-default-500/20",
+                        "text-default-600 bg-default-400/20 dark:bg-default-500/20 dark:text-default-400",
                     }}
                     isRequired
                     isInvalid={!!errors?.image ?? false}
@@ -99,7 +109,7 @@ export default function CreateArticle() {
                     isRequired
                     classNames={{
                       inputWrapper:
-                        "text-default-300 bg-default-400/20 dark:bg-default-500/20",
+                        "text-default-600 bg-default-400/20 dark:bg-default-500/20 dark:text-default-400",
                     }}
                     isInvalid={!!errors?.tags ?? false}
                     label="Tags"
@@ -114,7 +124,7 @@ export default function CreateArticle() {
                     isClearable
                     classNames={{
                       inputWrapper:
-                        "text-default-300 bg-default-400/20 dark:bg-default-500/20",
+                        "text-default-600 bg-default-400/20 dark:bg-default-500/20 dark:text-default-400",
                     }}
                     isRequired
                     isInvalid={!!errors?.desc ?? false}
@@ -128,7 +138,7 @@ export default function CreateArticle() {
                     isClearable
                     classNames={{
                       inputWrapper:
-                        "text-default-300 bg-default-400/20 dark:bg-default-500/20",
+                        "text-default-600 bg-default-400/20 dark:bg-default-500/20 dark:text-default-400",
                     }}
                     isRequired
                     isInvalid={!!errors?.publishedAt ?? false}
