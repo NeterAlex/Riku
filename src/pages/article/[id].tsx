@@ -25,7 +25,6 @@ export default function ArticlePage() {
   const [id] = useState<string>("article-preview");
   const tagString = certainArticle?.tags.map((t) => `#${t.name}`).join(" ");
   const dateString = certainArticle?.publishedAt.toLocaleDateString("zh-CN");
-  console.log(sessionData?.user);
 
   if (status === "loading" || status === "error") {
     return (

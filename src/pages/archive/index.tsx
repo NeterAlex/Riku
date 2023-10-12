@@ -58,7 +58,7 @@ bg-[#efefef] bg-cover bg-center dark:bg-[#202022]`}
                 归档 | Archive
               </h1>
               <p className="content-font text-medium text-secondary dark:text-primary">{`${articleList[
-                articleList.length - 1
+                articleList?.length - 1
               ]?.month} - ${articleList[0]?.month}`}</p>
             </CardHeader>
             <Divider />
