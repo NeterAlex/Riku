@@ -33,7 +33,7 @@ export default function HomeBanner() {
             </div>
           </CardBody>
           <CardFooter className="absolute z-10 h-full w-full flex-col justify-center gap-5 shadow-2xl before:rounded-xl">
-            <p className="header-font content-center text-3xl text-white/90">
+            <p className="header-font content-center text-center text-3xl text-white/90">
               {data?.title}
             </p>
             <p className="content-font content-center px-10 text-center text-medium text-white/80">

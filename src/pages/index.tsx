@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <title>Refined | 精锻地</title>
       <MotionFrame>
-        <div className="flex min-h-[calc(100vh-115px)] flex-col items-center justify-center overflow-hidden bg-[#efefef] dark:bg-[#202022]">
+        <div className="flex min-h-[calc(100vh-115px)] w-full flex-col items-center justify-center overflow-hidden bg-[#efefef] dark:bg-[#202022]">
           <HomeBanner />
           <div className="flex w-[95%] flex-col sm:w-[85%] md:w-[70%]">
             <ArticleCardList />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Dropdown,
@@ -10,6 +10,9 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
 } from "@nextui-org/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -17,23 +20,27 @@ import DarkModeSwitcher from "~/components/buttons/darkmode-switcher";
 import SearchButton from "~/components/buttons/search-button";
 
 export default function HeaderNavbar() {
+  const [isMenuOpen] = useState(false);
   return (
     <Navbar isBordered position="sticky" maxWidth="lg">
       <NavbarContent justify="center">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "关闭菜单" : "打开菜单"}
+          className="sm:hidden"
+        />
         <NavbarBrand className="mr-4">
           <p className="header-font hidden text-xl font-bold text-inherit sm:block">
-            {" "}
-            Refined{" "}
+            Refined
           </p>
         </NavbarBrand>
-        <NavbarContent className="gap-5 sm:flex">
+        <NavbarContent className="flex gap-5">
           <NavbarItem>
             <Link
-              className="header-font hover:text-secondary dark:hover:text-primary"
+              className="header-font hidden hover:text-secondary dark:hover:text-primary sm:block"
               color="foreground"
               href="/"
             >
-              首页 | Home
+              首页
             </Link>
           </NavbarItem>
           <NavbarItem>
@@ -42,16 +49,16 @@ export default function HeaderNavbar() {
               color="foreground"
               href="/archive"
             >
-              归档 | Archive
+              归档
             </Link>
           </NavbarItem>
           <NavbarItem>
             <Link
-              className="header-font hover:text-secondary dark:hover:text-primary"
+              className="header-font hidden hover:text-secondary dark:hover:text-primary sm:block"
               color="foreground"
               href="/about"
             >
-              关于 | About
+              关于
             </Link>
           </NavbarItem>
         </NavbarContent>
@@ -61,6 +68,38 @@ export default function HeaderNavbar() {
         <DarkModeSwitcher />
         <AvatarDropdownMenu />
       </NavbarContent>
+      <NavbarMenu>
+        <NavbarMenuItem key={`home`}>
+          <Link
+            color="foreground"
+            className="header-font w-full py-2"
+            href="/"
+            size="lg"
+          >
+            首页 | Home
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem key={`archive`}>
+          <Link
+            color="foreground"
+            className="header-font w-full py-2"
+            href="/archive"
+            size="lg"
+          >
+            归档 | Archive
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem key={`about`}>
+          <Link
+            color="foreground"
+            className="header-font w-full py-2"
+            href="/about"
+            size="lg"
+          >
+            关于 | About
+          </Link>
+        </NavbarMenuItem>
+      </NavbarMenu>
     </Navbar>
   );
 }
@@ -128,7 +167,7 @@ const AvatarDropdownMenu = () => {
         </div>
       </DropdownTrigger>
       <DropdownMenu
-        className="bg-white"
+        className="bg-[#efefef] dark:bg-[#202022]"
         aria-label="Profile Actions"
         variant="flat"
       >
