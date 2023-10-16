@@ -13,14 +13,17 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
+  useDisclosure,
 } from "@nextui-org/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import DarkModeSwitcher from "~/components/buttons/darkmode-switcher";
 import SearchButton from "~/components/buttons/search-button";
+import SearchModal from "~/components/modal/search-modal";
 
 export default function HeaderNavbar() {
   const [isMenuOpen] = useState(false);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <Navbar isBordered position="sticky" maxWidth="lg">
       <NavbarContent justify="center">
@@ -47,6 +50,15 @@ export default function HeaderNavbar() {
             <Link
               className="header-font hidden hover:text-secondary dark:hover:text-primary sm:block"
               color="foreground"
+              href="/article"
+            >
+              文章
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link
+              className="header-font hidden hover:text-secondary dark:hover:text-primary sm:block"
+              color="foreground"
               href="/archive"
             >
               归档
@@ -64,7 +76,7 @@ export default function HeaderNavbar() {
         </NavbarContent>
       </NavbarContent>
       <NavbarContent as="div" className="items-center" justify="end">
-        <SearchButton />
+        <SearchButton onClick={onOpen} />
         <DarkModeSwitcher />
         <AvatarDropdownMenu />
       </NavbarContent>
@@ -79,6 +91,16 @@ export default function HeaderNavbar() {
             首页 | Home
           </Link>
         </NavbarMenuItem>
+        <NavbarMenuItem key={`article`}>
+          <Link
+            color="foreground"
+            className="header-font w-full py-2"
+            href="/article"
+            size="lg"
+          >
+            文章 | Article
+          </Link>
+        </NavbarMenuItem>
         <NavbarMenuItem key={`archive`}>
           <Link
             color="foreground"
@@ -89,6 +111,7 @@ export default function HeaderNavbar() {
             归档 | Archive
           </Link>
         </NavbarMenuItem>
+
         <NavbarMenuItem key={`about`}>
           <Link
             color="foreground"
@@ -100,6 +123,7 @@ export default function HeaderNavbar() {
           </Link>
         </NavbarMenuItem>
       </NavbarMenu>
+      <SearchModal isOpen={isOpen} onOpenChange={onOpenChange} />
     </Navbar>
   );
 }

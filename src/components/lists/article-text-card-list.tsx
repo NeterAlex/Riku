@@ -1,11 +1,13 @@
 import { api } from "~/utils/api";
-import ArticleCard from "~/components/cards/article-card";
+import ArticleTextCard from "~/components/cards/article-text-card";
 import { CircularProgress } from "@nextui-org/react";
 
-export default function ArticleCardList() {
-  const { data: articleList, status } = api.article.getLatestList.useQuery({
-    count: 5,
-  });
+export default function ArticleTextCardList() {
+  const { data: articleList, status } =
+    api.article.getAllWithPagination.useQuery({
+      pageIndex: 1,
+      pageSize: 50,
+    });
 
   if (status === "loading" || status === "error") {
     return (
@@ -19,14 +21,14 @@ export default function ArticleCardList() {
 
   return (
     <>
-      <div className="flex flex-wrap justify-center gap-5 py-5">
+      <div className="flex flex-wrap justify-center gap-5 px-6 py-5">
         {articleList?.slice(1).map((a) => {
           // 处理信息
           const tagString = a.tags.map((t) => `#${t.name}`).join(" ");
           const dateString = a.publishedAt.toLocaleDateString("zh-CN");
 
           return (
-            <ArticleCard
+            <ArticleTextCard
               key={a.id}
               id={a.id}
               title={a.title}
@@ -34,7 +36,6 @@ export default function ArticleCardList() {
               time={dateString}
               desc={a.desc}
               author={a.author.name ?? "GUEST"}
-              img={a.image}
             />
           );
         })}

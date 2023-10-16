@@ -58,7 +58,7 @@ bg-[#efefef] bg-cover bg-center dark:bg-[#202022]`}
                   <h1 className="header-font text-2xl dark:text-gray-400 ">
                     归档 | Archive
                   </h1>
-                  <p className="content-font text-medium text-secondary dark:text-primary">{`${articleList[
+                  <p className="content-font text-medium text-gray-500 dark:text-gray-400">{`${articleList[
                     articleList?.length - 1
                   ]?.month} - ${articleList[0]?.month}`}</p>
                 </CardHeader>
@@ -157,7 +157,7 @@ bg-[#efefef] bg-cover bg-center dark:bg-[#202022]`}
                                   <p className="header-font text-medium text-gray-500">
                                     {dateString.split("/")[2]}日
                                   </p>
-                                  <h1 className="header-font text-medium">
+                                  <h1 className="header-font text-medium text-secondary dark:text-primary">
                                     {article.title}
                                   </h1>
                                 </div>

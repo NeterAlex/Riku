@@ -74,6 +74,32 @@ export const articleRouter = createTRPCRouter({
     });
   }),
 
+  getLatestList: publicProcedure
+    .input(z.object({ count: z.number() }))
+    .query(({ ctx, input }) => {
+      return ctx.db.article.findMany({
+        orderBy: { publishedAt: "desc" },
+        take: input.count,
+        select: {
+          id: true,
+          title: true,
+          author: {
+            select: {
+              name: true,
+            },
+          },
+          desc: true,
+          image: true,
+          tags: {
+            select: {
+              name: true,
+            },
+          },
+          publishedAt: true,
+        },
+      });
+    }),
+
   getListGroupByPublishedTime: publicProcedure.query(({ ctx }) => {
     return ctx.db.article.findMany({
       orderBy: {

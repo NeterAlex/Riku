@@ -161,7 +161,7 @@ export default function SearchPage() {
 }
 
 const ListboxWrapper = ({ children }: { children: ReactElement }) => (
-  <div className="w-full rounded-small border-small border-default-200 px-1 py-2 dark:border-default-100 dark:border-default-700">
+  <div className="w-full rounded-small border-small border-default-200 px-1 py-2 dark:border-default-700">
     {children}
   </div>
 );
