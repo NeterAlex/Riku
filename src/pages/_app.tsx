@@ -16,7 +16,21 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <NextUIProvider>
         <NextThemesProvider attribute="class" defaultTheme="light">
           <Layout>
-            <Component {...pageProps} />
+            <>
+              <Component {...pageProps} />
+              <link
+                rel="stylesheet"
+                href={
+                  "https://192960944.r.cdn36.com/chinesefonts2/packages/lxgwwenkai/dist/LXGWWenKai-Bold/result.css"
+                }
+              />
+              <link
+                rel="stylesheet"
+                href={
+                  "https://192960944.r.cdn36.com/chinesefonts2/packages/jhlst/dist/京華老宋体v1_007/result.css"
+                }
+              />
+            </>
           </Layout>
         </NextThemesProvider>
       </NextUIProvider>

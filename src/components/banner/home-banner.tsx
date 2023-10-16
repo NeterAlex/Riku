@@ -24,6 +24,7 @@ export default function HomeBanner() {
           <Image
             alt=""
             removeWrapper
+            fetchPriority={"high"}
             className="object-cover"
             src={data?.image}
           />

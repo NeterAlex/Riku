@@ -17,6 +17,16 @@ const config = {
         locales: ["zh-CN"],
         defaultLocale: "zh-CN",
     },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'images.pexels.com',
+                port: '',
+                pathname: '/photos/**',
+            },
+        ],
+    },
 };
 
 export default config;
