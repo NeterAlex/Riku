@@ -1,6 +1,6 @@
 # Riku
 An easy-to-use, full-featured blog application with modern UI, also a full-stack software built using Next.js as well as tRPC.
-***
+
 ## 🧬 Introduction
 This application comes from "Create a blog software that is completely under my control".
 It is mainly based on the T3 Stack and is almost entirely written in Typescript.
